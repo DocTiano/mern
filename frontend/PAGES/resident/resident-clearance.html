@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STUDENT TABLE</title>
+    <link rel="stylesheet" href="../../css/oTable.css">
+    <link rel="stylesheet" href="../../css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    
+</head>
+
+<body>
+    <div class="container">
+        <div class="topbar">
+            <div class="logo">
+                <h2>SAN ROQUE</h2>
+            </div>
+            <div class="search">
+                <form method="POST" action="">
+                    <input type="text" id="search" name="search" placeholder="SEARCH">
+                    <label for="search"><i class="fas fa-search"></i></label>
+                </form>
+            </div>
+            <i class="fas fa-bell"></i>
+            <div class="user">
+                <img src="../../images/adminPHOTO.png" alt="" id="userPhoto" onclick="toggleDropdown()">
+                <div id="dropdownMenu" class="dropdown-content">
+                    <a href="../../index.html">Logout</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar">
+            <ul>
+                <li><a href="resident-permit.html"><i class="fa fa-file"></i>
+                        <div>Permit</div>
+                    </a></li>
+                <li><a href="resident-clearance.html"><i class="fa fa-file"></i>
+                        <div>Clearance</div>
+                    </a></li>
+            </ul>
+        </div>
+
+        <div id="modal" class="modal">
+            <div class="modal-content" style="max-width: 400px; padding: 20px;">
+                <span class="close" onclick="document.getElementById('modal').style.display='none'">&times;</span>
+                <h2 style="margin-bottom: 15px;">Request Clearance</h2>
+                <form id="clearanceForm">
+                    <div class="form-group" style="margin-bottom: 15px;">
+                        <label for="purpose">Purpose:</label>
+                        <input type="text" id="purpose" name="purpose" required>
+                    </div>
+
+                    <div class="form-actions" style="margin-top: 15px;">
+                        <button type="submit">Submit</button>
+                        <button type="button" onclick="document.getElementById('modal').style.display='none'">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+        <div class="main">
+
+            <div class="table_header">
+                <h2>CLEARANCE</h2>
+                <div>
+                    <button class="add_new" onclick="document.getElementById('modal').style.display='block'">REQUEST CLEARANCE</button>
+                </div>
+            </div>
+
+            <div class="tab">
+                <button class="tablinks new" onclick="openTab(event, 'NewClearance')" id="defaultTab">New</button>
+                <button class="tablinks approved" onclick="openTab(event, 'ApprovedClearance')">Approved</button>
+                <button class="tablinks disapproved" onclick="openTab(event, 'DisapprovedClearance')">Disapproved</button>
+            </div>
+
+            <div id="NewClearance" class="tabcontent">
+                <h2>New Clearance</h2>
+                <div class="table_section">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Resident Name</th>
+                                <th>Purpose</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Juan Dela Cruz</td>
+                                <td>Employment</td>
+                            </tr>
+                            <tr>
+                                <td>Maria Santos</td>
+                                <td>Bank Requirement</td>
+                            </tr>
+                            <tr>
+                                <td>Pedro Reyes</td>
+                                <td>Police Clearance</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="ApprovedClearance" class="tabcontent">
+                <h2>Approved Clearance</h2>
+                <div class="table_section">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Clearance Number</th>
+                                <th>Resident Name</th>
+                                <th>Findings</th>
+                                <th>Purpose</th>
+                                <th>OR Number</th>
+                                <th>Amount to be Paid</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>CLR-2024-001</td>
+                                <td>Juan Dela Cruz</td>
+                                <td>No Derogatory Record</td>
+                                <td>Employment</td>
+                                <td>OR-2024-101</td>
+                                <td>₱100.00</td>
+                            </tr>
+                            <tr>
+                                <td>CLR-2024-002</td>
+                                <td>Maria Santos</td>
+                                <td>No Criminal Record</td>
+                                <td>Bank Requirement</td>
+                                <td>OR-2024-102</td>
+                                <td>₱150.00</td>
+                            </tr>
+                            <tr>
+                                <td>CLR-2024-003</td>
+                                <td>Pedro Reyes</td>
+                                <td>Good Moral Character</td>
+                                <td>Police Clearance</td>
+                                <td>OR-2024-103</td>
+                                <td>₱200.00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="DisapprovedClearance" class="tabcontent">
+                <h2>Disapproved Clearance</h2>
+                <div class="table_section">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Resident Name</th>
+                                <th>Findings</th>
+                                <th>Purpose</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Ricardo Garcia</td>
+                                <td>Pending Case</td>
+                                <td>Employment</td>
+                            </tr>
+                            <tr>
+                                <td>Ana Gonzales</td>
+                                <td>Incomplete Requirements</td>
+                                <td>Travel</td>
+                            </tr>
+                            <tr>
+                                <td>Miguel Torres</td>
+                                <td>Non-resident</td>
+                                <td>Business Permit</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="deleteConfirmation" class="confirmation-dialog">
+        <div class="confirmation-content">
+            <p>Are you sure you want to delete selected data below?</p>
+            <button class="confirm-delete" onclick="deleteSelected()">Yes, Delete</button>
+            <button class="cancel-delete" onclick="closeDeleteConfirmation()">Cancel</button>
+        </div>
+    </div>
+
+    <script>
+        function toggleDropdown() {
+                document.getElementById("dropdownMenu").classList.toggle("show");
+            }
+
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        function closeModal() {
+            document.getElementById("modal").style.display = "none";
+        }
+
+        // Set default tab
+        document.getElementById("defaultTab").click();
+
+        window.onclick = function (event) {
+            if (!event.target.matches('#userPhoto')) {
+                const dropdowns = document.getElementsByClassName("dropdown-content");
+                for (let i = 0; i < dropdowns.length; i++) {
+                    const openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+            if (event.target == document.getElementById("modal")) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+
+</html>

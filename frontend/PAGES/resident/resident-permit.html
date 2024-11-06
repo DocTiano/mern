@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RESIDENT PERMIT</title>
+    <link rel="stylesheet" href="../../css/oTable.css">
+    <link rel="stylesheet" href="../../css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="../../css/modal.css">
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="topbar">
+            <div class="logo">
+                <h2>SAN ROQUE</h2>
+            </div>
+            <div class="search">
+                <form method="POST" action="">
+                    <input type="text" id="search" name="search" placeholder="SEARCH">
+                    <label for="search"><i class="fas fa-search"></i></label>
+                </form>
+            </div>
+            <i class="fas fa-bell"></i>
+            <div class="user">
+                <img src="../../images/adminPHOTO.png" alt="" id="userPhoto" onclick="toggleDropdown()">
+                <div id="dropdownMenu" class="dropdown-content">
+                    <a href="../../index.html">Logout</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar">
+            <ul>
+                <li>
+                    <a href="resident-permit.html">
+                        <i class="fa fa-file"></i>
+                        <div>Permit</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="resident-clearance.html">
+                        <i class="fa fa-file"></i>
+                        <div>Clearance</div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="main">
+            <div class="table_header">
+                <h2>PERMIT CLEARANCE</h2>
+                <div>
+                    <button class="add_new" onclick="document.getElementById('modal').style.display='block'">REQUEST PERMIT</button>
+                </div>
+            </div>
+
+            <div class="tab">
+                <button class="tablinks new" onclick="openTab(event, 'NewPermit')" id="defaultTab">New</button>
+                <button class="tablinks approved" onclick="openTab(event, 'ApprovedPermit')">Approved</button>
+                <button class="tablinks disapproved" onclick="openTab(event, 'DisapprovedPermit')">Disapproved</button>
+            </div>
+
+            <div id="NewPermit" class="tabcontent">
+                <h2>New Permits</h2>
+                <div class="table_section">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Business Name</th>
+                                <th>Zone Number</th>
+                                <th>Type of Business</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Juan's Sari-Sari Store</td>
+                                <td>Zone 1</td>
+                                <td>Grocery stores, supermarkets, and convenience stores</td>
+                            </tr>
+                            <tr>
+                                <td>Maria's Bakery</td>
+                                <td>Zone 3</td>
+                                <td>Restaurants, cafés, and bakeries</td>
+                            </tr>
+                            <tr>
+                                <td>Pedro's Computer Shop</td>
+                                <td>Zone 2</td>
+                                <td>Clothing, electronics, and home goods stores</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="ApprovedPermit" class="tabcontent">
+                <h2>Approved Permits</h2>
+                <div class="table_section">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Business Name</th>
+                                <th>Zone Number</th>
+                                <th>Type of Business</th>
+                                <th>OR Number</th>
+                                <th>Amount to be Paid</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Juan's Sari-Sari Store</td>
+                                <td>Zone 1</td>
+                                <td>Grocery stores, supermarkets, and convenience stores</td>
+                                <td>OR-2024-001</td>
+                                <td>₱2,500.00</td>
+                            </tr>
+                            <tr>
+                                <td>Maria's Bakery</td>
+                                <td>Zone 3</td>
+                                <td>Restaurants, cafés, and bakeries</td>
+                                <td>OR-2024-002</td>
+                                <td>₱3,000.00</td>
+                            </tr>
+                            <tr>
+                                <td>Pedro's Computer Shop</td>
+                                <td>Zone 2</td>
+                                <td>Clothing, electronics, and home goods stores</td>
+                                <td>OR-2024-003</td>
+                                <td>₱3,500.00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="DisapprovedPermit" class="tabcontent">
+                <h2>Disapproved Permits</h2>
+                <div class="table_section">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Business Name</th>
+                                <th>Zone Number</th>
+                                <th>Type of Business</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Juan's Sari-Sari Store</td>
+                                <td>Zone 1</td>
+                                <td>Grocery stores, supermarkets, and convenience stores</td>
+                            </tr>
+                            <tr>
+                                <td>Maria's Bakery</td>
+                                <td>Zone 3</td>
+                                <td>Restaurants, cafés, and bakeries</td>
+                            </tr>
+                            <tr>
+                                <td>Pedro's Computer Shop</td>
+                                <td>Zone 2</td>
+                                <td>Clothing, electronics, and home goods stores</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add the modal -->
+        <div id="modal" class="modal">
+            <div class="modal-content" style="max-width: 400px; padding: 20px;">
+                <span class="close" onclick="document.getElementById('modal').style.display='none'">&times;</span>
+                <h2 style="margin-bottom: 15px;">Request Permit</h2>
+                <form id="permitForm">
+                    <div class="form-group" style="margin-bottom: 10px;">
+                        <label for="businessName">Business Name:</label>
+                        <input type="text" id="businessName" name="businessName" required>
+                    </div>
+                    
+                    <div class="form-group" style="margin-bottom: 10px;">
+                        <label for="zoneNumber">Zone #:</label>
+                        <input type="text" id="zoneNumber" name="zoneNumber" required>
+                    </div>
+                    
+                    <div class="form-group" style="margin-bottom: 15px;">
+                        <label for="businessType">Type of Business:</label>
+                        <select id="businessType" name="businessType" required>
+                            <option value="">Select business type...</option>
+                            <!-- Retail and Wholesale -->
+                            <optgroup label="Retail and Wholesale Businesses">
+                                <option value="grocery">Grocery stores, supermarkets, and convenience stores</option>
+                                <option value="clothing">Clothing, electronics, and home goods stores</option>
+                                <option value="pharmacy">Pharmacies and health stores</option>
+                                <option value="wholesale">Wholesale suppliers</option>
+                            </optgroup>
+                            <!-- Food and Beverage -->
+                            <optgroup label="Food and Beverage Services">
+                                <option value="restaurant">Restaurants, cafés, and bakeries</option>
+                                <option value="foodstall">Food stalls and street vendors</option>
+                                <option value="bar">Bars and pubs</option>
+                            </optgroup>
+                            <!-- Healthcare -->
+                            <optgroup label="Healthcare and Wellness">
+                                <option value="clinic">Clinics, hospitals, and health centers</option>
+                                <option value="dental">Dental and optical clinics</option>
+                                <option value="fitness">Fitness centers, gyms, and spas</option>
+                            </optgroup>
+                            <!-- Educational -->
+                            <optgroup label="Educational Services">
+                                <option value="school">Schools and learning centers</option>
+                                <option value="tutorial">Tutorial and vocational training centers</option>
+                            </optgroup>
+                            <!-- Financial -->
+                            <optgroup label="Financial Services">
+                                <option value="bank">Banks and credit unions</option>
+                                <option value="microfinance">Microfinance institutions</option>
+                                <option value="insurance">Insurance agencies</option>
+                            </optgroup>
+                            <!-- Real Estate -->
+                            <optgroup label="Real Estate and Property Services">
+                                <option value="realestate">Real estate agencies and property management</option>
+                                <option value="rental">Rental and leasing services</option>
+                            </optgroup>
+                            <!-- Transportation -->
+                            <optgroup label="Transportation and Logistics">
+                                <option value="transport">Public transportation</option>
+                                <option value="delivery">Delivery and logistics companies</option>
+                                <option value="repair">Vehicle repair and maintenance services</option>
+                            </optgroup>
+                            <!-- Construction -->
+                            <optgroup label="Construction and Home Improvement">
+                                <option value="construction">Construction and engineering firms</option>
+                                <option value="hardware">Hardware and building supply stores</option>
+                                <option value="landscaping">Landscaping and gardening services</option>
+                            </optgroup>
+                            <!-- Tourism -->
+                            <optgroup label="Tourism and Hospitality">
+                                <option value="hotel">Hotels, resorts, and inns</option>
+                                <option value="travel">Tour guides and travel agencies</option>
+                                <option value="recreation">Recreational services</option>
+                            </optgroup>
+                            <!-- Professional Services -->
+                            <optgroup label="Professional and Technical Services">
+                                <option value="professional">Legal, accounting, and consulting services</option>
+                                <option value="it">IT and web development services</option>
+                                <option value="design">Graphic design and marketing agencies</option>
+                            </optgroup>
+                            <!-- Manufacturing -->
+                            <optgroup label="Manufacturing and Production">
+                                <option value="factory">Small-scale factories</option>
+                                <option value="handicraft">Handicraft and souvenir production</option>
+                                <option value="packaging">Packaging and assembly services</option>
+                            </optgroup>
+                            <!-- Personal Services -->
+                            <optgroup label="Personal Services">
+                                <option value="salon">Barber shops and beauty salons</option>
+                                <option value="events">Photography and event planning services</option>
+                                <option value="laundry">Laundry and dry-cleaning services</option>
+                            </optgroup>
+                            <!-- Agriculture -->
+                            <optgroup label="Agriculture and Agribusiness">
+                                <option value="farm">Farms and poultry operations</option>
+                                <option value="agsupply">Agricultural supply stores</option>
+                                <option value="fishery">Fisheries and seafood vendors</option>
+                            </optgroup>
+                        </select>
+                    </div>
+
+                    <div class="form-actions" style="margin-top: 15px;">
+                        <button type="submit">Submit</button>
+                        <button type="button" onclick="document.getElementById('modal').style.display='none'">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Add the necessary JavaScript -->
+        <script>
+            function openTab(evt, tabName) {
+                var i, tabcontent, tablinks;
+                tabcontent = document.getElementsByClassName("tabcontent");
+                for (i = 0; i < tabcontent.length; i++) {
+                    tabcontent[i].style.display = "none";
+                }
+                tablinks = document.getElementsByClassName("tablinks");
+                for (i = 0; i < tablinks.length; i++) {
+                    tablinks[i].className = tablinks[i].className.replace(" active", "");
+                }
+                document.getElementById(tabName).style.display = "block";
+                evt.currentTarget.className += " active";
+            }
+
+            // Set default tab
+            document.getElementById("defaultTab").click();
+
+            function toggleDropdown() {
+                document.getElementById("dropdownMenu").classList.toggle("show");
+            }
+
+            window.onclick = function(event) {
+                if (!event.target.matches('#userPhoto')) {
+                    const dropdowns = document.getElementsByClassName("dropdown-content");
+                    for (let i = 0; i < dropdowns.length; i++) {
+                        const openDropdown = dropdowns[i];
+                        if (openDropdown.classList.contains('show')) {
+                            openDropdown.classList.remove('show');
+                        }
+                    }
+                }
+            }
+        </script>
+    </div>
+</body>
+
+</html>

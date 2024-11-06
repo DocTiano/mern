@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STUDENT TABLE</title>
+    <link rel="stylesheet" href="../../css/oTable.css">
+    <link rel="stylesheet" href="../../css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="topbar">
+            <div class="logo">
+                <h2>SAN ROQUE</h2>
+            </div>
+            <div class="search">
+                <form method="POST" action="">
+                    <input type="text" id="search" name="search" placeholder="SEARCH">
+                    <label for="search"><i class="fas fa-search"></i></label>
+                </form>
+            </div>
+            <i class="fas fa-bell"></i>
+            <div class="user">
+                <img src="../../images/adminPHOTO.png" alt="" id="userPhoto" onclick="toggleDropdown()">
+                <div id="dropdownMenu" class="dropdown-content">
+                    <a href="../../index.html">Logout</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar">
+            <ul>
+                <li>
+                    <a href="AdminDashboard.html">
+                        <i class="fas fa-th-large"></i>
+                        <div>Dashboard</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="oTable.html">
+                        <i class="fa fa-user"></i>
+                        <div>Officials</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="staff.html">
+                        <i class="fa fa-user"></i>
+                        <div>Staff</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="zoneLeader.html">
+                        <i class="fa fa-user"></i>
+                        <div>Zone Leader</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-home"></i>
+                        <div>Household</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="resident.html">
+                        <i class="fa fa-user"></i>
+                        <div>Resident</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="permit.html">
+                        <i class="fa fa-file"></i>
+                        <div>Permit</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="blotter.html">
+                        <i class="fa fa-user"></i>
+                        <div>Blotter</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="clearance.html">
+                        <i class="fa fa-file"></i>
+                        <div>Clearance</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="report.html">
+                        <i class="fa fa-file"></i>
+                        <div>Report</div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2>ADD HOUSEHOLD</h2>
+                <form id="addStudentForm" enctype="multipart/form-data" method="POST">
+                    <label for="household">Household #:</label>
+                    <input type="text" id="firstname" name="firstname" required>
+
+                    <label for="zone">Zone #:</label>
+                    <input type="text" id="middlename" name="middlename" required>
+                    <br><br>    
+                    <select name="ddl_pos" class="form-control input-sm" required>
+                        <option selected="" disabled="">-- Input Household # First --</option>
+                    </select>
+                    <br><br>
+                    <label for="totalmembers">Total Number of Members:</label>
+                    <input type="text" id="middlename" name="middlename" required>
+
+                    <button type="submit">Add Household</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="main">
+            <div class="table">
+                <div class="table_header">
+                    <h2>HOUSEHOLD</h2>
+                    <div>
+                        <button class="add_new" onclick="document.getElementById('modal').style.display='block'">ADD NEW</button>
+                        <button class="delete-button" onclick="showDeleteConfirmation()">DELETE SELECTED</button>
+                    </div>
+                </div>
+
+                <div class="table_section">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox" id="selectAll" onclick="toggleAllCheckboxes()"></th>
+                                <th>Household #</th>
+                                <th>Zone</th>
+                                <th>Total Members</th>
+                                <th>Head of Family</th>
+                                <th>Option</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="checkbox" class="rowCheckbox"></td>
+                                <td>143</td>
+                                <td>5</td>
+                                <td>5</td>
+                                <td>Christian Paul Celian</td>
+                                <td>
+                                    <button onclick="exampleEdit()"><i class="fa-solid fa-pen-to-square"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="pagination">
+                    <div><i class="fa-solid fa-angles-left"></i></div>
+                    <div><i class="fa-solid fa-chevron-left"></i></div>
+                    <div>1</div>
+                    <div>2</div>
+                    <div><i class="fa-solid fa-chevron-right"></i></div>
+                    <div><i class="fa-solid fa-angles-right"></i></div>
+                </div>
+            </div>
+        </div>
+
+            <div id="editModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeEditModal()">&times;</span>
+                    <h2>EDIT HOUSEHOLD INFORMATION</h2>
+                    <form id="editOfficialForm" method="POST" enctype="multipart/form-data">
+                        
+                        <div class="form-group">
+                            <label>Household #:</label>
+                            <input id="household" name="household" class="form-control input-sm" type="text"
+                                placeholder="Household Number" required />
+                        </div>
+
+                        <div class="form-group">
+                            <label>Zone #:</label>
+                            <input id="zonenumber" name="zonenumber" class="form-control input-sm" type="text"
+                                placeholder="Zone Number" required />
+                        </div>
+
+                        <div class="form-group">
+                            <label>Head of Family:</label>
+                            <input id="head" name="head" class="form-control input-sm" type="text"
+                                placeholder="Head of the Family" required />
+                        </div>
+                        <div class="form-group">
+                            <label>Total Household Members:</label>
+                            <input id="totalmember" name="totalmember" class="form-control input-sm" type="text"
+                                placeholder="Total Household Member" required />
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-sm" name="btn_edit">Update Household</button>
+                    </form>
+                </div>
+            </div>
+
+            <div id="deleteConfirmation" class="confirmation-dialog">
+                <div class="confirmation-content">
+                    <p>Are you sure you want to delete selected data below?</p>
+                    <button class="confirm-delete" onclick="deleteSelected()">Yes, Delete</button>
+                    <button class="cancel-delete" onclick="closeDeleteConfirmation()">Cancel</button>
+                </div>
+            </div>
+    </div>
+
+    <script>
+        function toggleDropdown() {
+            document.getElementById("dropdownMenu").classList.toggle("show");
+        }
+        window.onclick = function(event) {
+            if (!event.target.matches('#userPhoto')) {
+                const dropdowns = document.getElementsByClassName("dropdown-content");
+                for (let i = 0; i < dropdowns.length; i++) {
+                    const openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+            if (event.target == document.getElementById("modal")) {
+                closeModal();
+            }
+            if (event.target == document.getElementById("deleteConfirmation")) {
+                closeDeleteConfirmation();
+            }
+        }
+
+        function openEditModal(household) {
+            document.getElementById("household").value = household.household;
+            document.getElementById("zonenumber").value = household.zonenumber;
+            document.getElementById("head").value = household.head;
+            document.getElementById("totalmember").value = household.totalmember;
+
+            document.getElementById("editModal").style.display = "block";
+        }
+
+        function closeEditModal() {
+            document.getElementById("editModal").style.display = "none";
+        }
+
+        function exampleEdit() {
+            const household = {
+                household: "143",
+                zonenumber: "5",
+                head: "Christian Paul Celian",
+                totalmember: "5",
+            };
+            openEditModal(household);
+        }
+
+        function closeModal() {
+            document.getElementById("modal").style.display = "none";
+        }
+
+        function showDeleteConfirmation() {
+            document.getElementById('deleteConfirmation').style.display = 'block';
+        }
+
+        function closeDeleteConfirmation() {
+            document.getElementById('deleteConfirmation').style.display = 'none';
+        }
+
+        function deleteSelected() {
+            const checkboxes = document.getElementsByClassName('rowCheckbox');
+            for (let checkbox of checkboxes) {
+                if (checkbox.checked) {
+                    checkbox.closest('tr').remove();
+                }
+            }
+            closeDeleteConfirmation();
+        }
+
+        function toggleAllCheckboxes() {
+            const checkboxes = document.getElementsByClassName('rowCheckbox');
+            const selectAllCheckbox = document.getElementById('selectAll');
+            
+            for (let checkbox of checkboxes) {
+                checkbox.checked = selectAllCheckbox.checked;
+            }
+        }
+    </script>
+</body>
+
+</html>

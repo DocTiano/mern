@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STUDENT TABLE</title>
+    <link rel="stylesheet" href="../../css/oTable.css">
+    <link rel="stylesheet" href="../../css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="topbar">
+            <div class="logo">
+                <h2>SAN ROQUE</h2>
+            </div>
+            <div class="search">
+                <form method="POST" action="">
+                    <input type="text" id="search" name="search" placeholder="SEARCH">
+                    <label for="search"><i class="fas fa-search"></i></label>
+                </form>
+            </div>
+            <i class="fas fa-bell"></i>
+            <div class="user">
+                <img src="../../images/adminPHOTO.png" alt="" id="userPhoto" onclick="toggleDropdown()">
+                <div id="dropdownMenu" class="dropdown-content">
+                    <a href="../../index.html">Logout</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar">
+            <ul>
+                <li>
+                    <a href="AdminDashboard.html">
+                        <i class="fas fa-th-large"></i>
+                        <div>Dashboard</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="oTable.html">
+                        <i class="fa fa-user"></i>
+                        <div>Officials</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="staff.html">
+                        <i class="fa fa-user"></i>
+                        <div>Staff</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="zoneLeader.html">
+                        <i class="fa fa-user"></i>
+                        <div>Zone Leader</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="household.html">
+                        <i class="fa fa-home"></i>
+                        <div>Household</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="resident.html">
+                        <i class="fa fa-user"></i>
+                        <div>Resident</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-file"></i>
+                        <div>Permit</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="blotter.html">
+                        <i class="fa fa-user"></i>
+                        <div>Blotter</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="clearance.html">
+                        <i class="fa fa-file"></i>
+                        <div>Clearance</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="report.html">
+                        <i class="fa fa-file"></i>
+                        <div>Report</div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2>ADD PERMIT</h2>
+                <form id="addPermitForm" method="POST">
+                    <div class="form-group">
+                        <label for="resident">Resident:</label>
+                        <input type="text" id="resident" name="resident" class="form-control" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="business_name">Business Name:</label>
+                        <input type="text" id="business_name" name="business_name" class="form-control" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="business_address">Business Address:</label>
+                        <input type="text" id="business_address" name="business_address" class="form-control" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="business_type">Type of Business:</label>
+                        <select id="business_type" name="business_type" class="form-control" required>
+                            <option value="">Select business type...</option>
+                            <!-- Retail and Wholesale -->
+                            <optgroup label="Retail and Wholesale Businesses">
+                                <option value="grocery">Grocery stores, supermarkets, and convenience stores</option>
+                                <option value="clothing">Clothing, electronics, and home goods stores</option>
+                                <option value="pharmacy">Pharmacies and health stores</option>
+                                <option value="wholesale">Wholesale suppliers</option>
+                            </optgroup>
+                            <!-- Food and Beverage -->
+                            <optgroup label="Food and Beverage Services">
+                                <option value="restaurant">Restaurants, cafés, and bakeries</option>
+                                <option value="foodstall">Food stalls and street vendors</option>
+                                <option value="bar">Bars and pubs</option>
+                            </optgroup>
+                            <!-- Healthcare -->
+                            <optgroup label="Healthcare and Wellness">
+                                <option value="clinic">Clinics, hospitals, and health centers</option>
+                                <option value="dental">Dental and optical clinics</option>
+                                <option value="fitness">Fitness centers, gyms, and spas</option>
+                            </optgroup>
+                            <!-- Educational -->
+                            <optgroup label="Educational Services">
+                                <option value="school">Schools and learning centers</option>
+                                <option value="tutorial">Tutorial and vocational training centers</option>
+                            </optgroup>
+                            <!-- Financial -->
+                            <optgroup label="Financial Services">
+                                <option value="bank">Banks and credit unions</option>
+                                <option value="microfinance">Microfinance institutions</option>
+                                <option value="insurance">Insurance agencies</option>
+                            </optgroup>
+                            <!-- Real Estate -->
+                            <optgroup label="Real Estate and Property Services">
+                                <option value="realestate">Real estate agencies and property management</option>
+                                <option value="rental">Rental and leasing services</option>
+                            </optgroup>
+                            <!-- Transportation -->
+                            <optgroup label="Transportation and Logistics">
+                                <option value="transport">Public transportation</option>
+                                <option value="delivery">Delivery and logistics companies</option>
+                                <option value="repair">Vehicle repair and maintenance services</option>
+                            </optgroup>
+                            <!-- Construction -->
+                            <optgroup label="Construction and Home Improvement">
+                                <option value="construction">Construction and engineering firms</option>
+                                <option value="hardware">Hardware and building supply stores</option>
+                                <option value="landscaping">Landscaping and gardening services</option>
+                            </optgroup>
+                            <!-- Tourism -->
+                            <optgroup label="Tourism and Hospitality">
+                                <option value="hotel">Hotels, resorts, and inns</option>
+                                <option value="travel">Tour guides and travel agencies</option>
+                                <option value="recreation">Recreational services</option>
+                            </optgroup>
+                            <!-- Professional Services -->
+                            <optgroup label="Professional and Technical Services">
+                                <option value="professional">Legal, accounting, and consulting services</option>
+                                <option value="it">IT and web development services</option>
+                                <option value="design">Graphic design and marketing agencies</option>
+                            </optgroup>
+                            <!-- Manufacturing -->
+                            <optgroup label="Manufacturing and Production">
+                                <option value="factory">Small-scale factories</option>
+                                <option value="handicraft">Handicraft and souvenir production</option>
+                                <option value="packaging">Packaging and assembly services</option>
+                            </optgroup>
+                            <!-- Personal Services -->
+                            <optgroup label="Personal Services">
+                                <option value="salon">Barber shops and beauty salons</option>
+                                <option value="events">Photography and event planning services</option>
+                                <option value="laundry">Laundry and dry-cleaning services</option>
+                            </optgroup>
+                            <!-- Agriculture -->
+                            <optgroup label="Agriculture and Agribusiness">
+                                <option value="farm">Farms and poultry operations</option>
+                                <option value="agsupply">Agricultural supply stores</option>
+                                <option value="fishery">Fisheries and seafood vendors</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="or_number">OR Number:</label>
+                        <input type="text" id="or_number" name="or_number" class="form-control" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="amount">Amount:</label>
+                        <input type="number" id="amount" name="amount" class="form-control" required />
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Add Permit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div id="editModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeEditModal()">&times;</span>
+                <h2>EDIT PERMIT</h2>
+                <form id="editPermitForm" method="POST">
+                    <div class="form-group">
+                        <label for="edit_resident">Resident:</label>
+                        <input type="text" id="edit_resident" name="edit_resident" class="form-control" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="edit_business_name">Business Name:</label>
+                        <input type="text" id="edit_business_name" name="edit_business_name" class="form-control" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="edit_business_address">Business Address:</label>
+                        <input type="text" id="edit_business_address" name="edit_business_address" class="form-control" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="edit_business_type">Type of Business:</label>
+                        <select id="edit_business_type" name="edit_business_type" class="form-control" required>
+                            <option value="">Select business type...</option>
+                            <!-- Retail and Wholesale -->
+                            <optgroup label="Retail and Wholesale Businesses">
+                                <option value="grocery">Grocery stores, supermarkets, and convenience stores</option>
+                                <option value="clothing">Clothing, electronics, and home goods stores</option>
+                                <option value="pharmacy">Pharmacies and health stores</option>
+                                <option value="wholesale">Wholesale suppliers</option>
+                            </optgroup>
+                            <!-- Food and Beverage -->
+                            <optgroup label="Food and Beverage Services">
+                                <option value="restaurant">Restaurants, cafés, and bakeries</option>
+                                <option value="foodstall">Food stalls and street vendors</option>
+                                <option value="bar">Bars and pubs</option>
+                            </optgroup>
+                            <!-- Healthcare -->
+                            <optgroup label="Healthcare and Wellness">
+                                <option value="clinic">Clinics, hospitals, and health centers</option>
+                                <option value="dental">Dental and optical clinics</option>
+                                <option value="fitness">Fitness centers, gyms, and spas</option>
+                            </optgroup>
+                            <!-- Educational -->
+                            <optgroup label="Educational Services">
+                                <option value="school">Schools and learning centers</option>
+                                <option value="tutorial">Tutorial and vocational training centers</option>
+                            </optgroup>
+                            <!-- Financial -->
+                            <optgroup label="Financial Services">
+                                <option value="bank">Banks and credit unions</option>
+                                <option value="microfinance">Microfinance institutions</option>
+                                <option value="insurance">Insurance agencies</option>
+                            </optgroup>
+                            <!-- Real Estate -->
+                            <optgroup label="Real Estate and Property Services">
+                                <option value="realestate">Real estate agencies and property management</option>
+                                <option value="rental">Rental and leasing services</option>
+                            </optgroup>
+                            <!-- Transportation -->
+                            <optgroup label="Transportation and Logistics">
+                                <option value="transport">Public transportation</option>
+                                <option value="delivery">Delivery and logistics companies</option>
+                                <option value="repair">Vehicle repair and maintenance services</option>
+                            </optgroup>
+                            <!-- Construction -->
+                            <optgroup label="Construction and Home Improvement">
+                                <option value="construction">Construction and engineering firms</option>
+                                <option value="hardware">Hardware and building supply stores</option>
+                                <option value="landscaping">Landscaping and gardening services</option>
+                            </optgroup>
+                            <!-- Tourism -->
+                            <optgroup label="Tourism and Hospitality">
+                                <option value="hotel">Hotels, resorts, and inns</option>
+                                <option value="travel">Tour guides and travel agencies</option>
+                                <option value="recreation">Recreational services</option>
+                            </optgroup>
+                            <!-- Professional Services -->
+                            <optgroup label="Professional and Technical Services">
+                                <option value="professional">Legal, accounting, and consulting services</option>
+                                <option value="it">IT and web development services</option>
+                                <option value="design">Graphic design and marketing agencies</option>
+                            </optgroup>
+                            <!-- Manufacturing -->
+                            <optgroup label="Manufacturing and Production">
+                                <option value="factory">Small-scale factories</option>
+                                <option value="handicraft">Handicraft and souvenir production</option>
+                                <option value="packaging">Packaging and assembly services</option>
+                            </optgroup>
+                            <!-- Personal Services -->
+                            <optgroup label="Personal Services">
+                                <option value="salon">Barber shops and beauty salons</option>
+                                <option value="events">Photography and event planning services</option>
+                                <option value="laundry">Laundry and dry-cleaning services</option>
+                            </optgroup>
+                            <!-- Agriculture -->
+                            <optgroup label="Agriculture and Agribusiness">
+                                <option value="farm">Farms and poultry operations</option>
+                                <option value="agsupply">Agricultural supply stores</option>
+                                <option value="fishery">Fisheries and seafood vendors</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit_or_number">OR Number:</label>
+                        <input type="text" id="edit_or_number" name="edit_or_number" class="form-control" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="edit_amount">Amount:</label>
+                        <input type="number" id="edit_amount" name="edit_amount" class="form-control" required />
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Update Permit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="main">
+            <div class="table_header">
+                <h2>PERMIT CLEARANCE</h2>
+                <div>
+                    <button class="add_new" onclick="document.getElementById('modal').style.display='block'">
+                        ADD PERMIT
+                    </button>
+                    <button class="delete-button" onclick="showDeleteConfirmation()">DELETE SELECTED</button>
+                </div>
+            </div>
+
+            <div class="tab">
+                <button class="tablinks approved" onclick="openTab(event, 'ApprovedClearance')" id="defaultTab">
+                    Approved
+                </button>
+                <button class="tablinks disapproved" onclick="openTab(event, 'DisapprovedClearance')">
+                    Disapproved
+                </button>
+            </div>
+
+            <div id="ApprovedClearance" class="tabcontent">
+                <h2>Approved Permit Clearance</h2>
+                <div class="table_section">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox" id="selectAll" onclick="toggleAllCheckboxes('ApprovedClearance')"></th>
+                                <th>Resident</th>
+                                <th>Business Name</th>
+                                <th>Business Address</th>
+                                <th>Type of Business</th>
+                                <th>OR Number</th>
+                                <th>Amount</th>
+                                <th>Option</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Example row for approved -->
+                            <tr>
+                                <td><input type="checkbox" class="rowCheckbox"></td>
+                                <td>123</td>
+                                <td>Chano Store</td>
+                                <td>Zone 4</td>
+                                <td>Store</td>
+                                <td>123456789</td>
+                                <td>200</td>
+                                <td>
+                                    <button onclick="editPermit(this)">
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="DisapprovedClearance" class="tabcontent">
+                <h2>Disapproved Permit Clearance</h2>
+                <div class="table_section">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox" id="selectAllDisapproved" onclick="toggleAllCheckboxes('DisapprovedClearance')"></th>
+                                <th>Resident</th>
+                                <th>Business Name</th>
+                                <th>Business Address</th>
+                                <th>Type of Business</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="checkbox" class="rowCheckbox"></td>
+                                <td>456</td>
+                                <td>ABC Market</td>
+                                <td>Zone 5</td>
+                                <td>Market</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="deleteConfirmation" class="confirmation-dialog">
+        <div class="confirmation-content">
+            <p>Are you sure you want to delete selected data below?</p>
+            <button class="confirm-delete" onclick="deleteSelected()">Yes, Delete</button>
+            <button class="cancel-delete" onclick="closeDeleteConfirmation()">Cancel</button>
+        </div>
+    </div>
+
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        function closeModal() {
+            document.getElementById("modal").style.display = "none";
+        }
+
+        function openEditModal(permitData) {
+            document.getElementById('edit_resident').value = permitData.resident;
+            document.getElementById('edit_business_name').value = permitData.businessName;
+            document.getElementById('edit_business_address').value = permitData.businessAddress;
+            document.getElementById('edit_business_type').value = permitData.businessType;
+            document.getElementById('edit_or_number').value = permitData.orNumber;
+            document.getElementById('edit_amount').value = permitData.amount;
+
+            document.getElementById("editModal").style.display = "block";
+        }
+
+        function closeEditModal() {
+            document.getElementById("editModal").style.display = "none";
+        }
+
+        function editPermit(button) {
+            const row = button.closest('tr');
+            const cells = row.getElementsByTagName('td');
+
+            const permitData = {
+                resident: cells[1].textContent,
+                businessName: cells[2].textContent,
+                businessAddress: cells[3].textContent,
+                businessType: cells[4].textContent,
+                orNumber: cells[5].textContent,
+                amount: cells[6].textContent
+            };
+
+            openEditModal(permitData);
+        }
+
+        function toggleDropdown() {
+            document.getElementById("dropdownMenu").classList.toggle("show");
+        }
+
+        function toggleAllCheckboxes(tabName) {
+            const tab = document.getElementById(tabName);
+            const checkboxes = tab.getElementsByClassName('rowCheckbox');
+            const selectAllCheckbox = tabName === 'DisapprovedClearance' ? document.getElementById('selectAllDisapproved') : document.getElementById('selectAll');
+            
+            for (let checkbox of checkboxes) {
+                checkbox.checked = selectAllCheckbox.checked;
+            }
+        }
+
+        function showDeleteConfirmation() {
+            document.getElementById('deleteConfirmation').style.display = 'block';
+        }
+
+        function closeDeleteConfirmation() {
+            document.getElementById('deleteConfirmation').style.display = 'none';
+        }
+
+        function deleteSelected() {
+            const checkboxes = document.getElementsByClassName('rowCheckbox');
+            for (let checkbox of checkboxes) {
+                if (checkbox.checked) {
+                    checkbox.closest('tr').remove();
+                }
+            }
+            closeDeleteConfirmation();
+        }
+
+        // Set default tab
+        document.getElementById("defaultTab").click();
+
+        // Window click handlers
+        window.onclick = function (event) {
+            if (event.target == document.getElementById("modal")) {
+                closeModal();
+            }
+            if (event.target == document.getElementById("editModal")) {
+                closeEditModal();
+            }
+            if (event.target == document.getElementById("deleteConfirmation")) {
+                closeDeleteConfirmation();
+            }
+            if (!event.target.matches('#userPhoto')) {
+                const dropdowns = document.getElementsByClassName("dropdown-content");
+                for (let i = 0; i < dropdowns.length; i++) {
+                    const openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

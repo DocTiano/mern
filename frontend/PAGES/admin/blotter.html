@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STUDENT TABLE</title>
+    <link rel="stylesheet" href="../../css/oTable.css">
+    <link rel="stylesheet" href="../../css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <style>
+        .modal-content {
+            max-width: 600px;
+            padding: 20px;
+        }
+
+        .form-section {
+            margin-bottom: 15px;
+            border-bottom: 1px solid black;
+            padding-bottom: 15px;
+        }
+
+        .form-section h3 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .form-group {
+            margin-bottom: 10px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 3px;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 6px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            margin-top: 15px;
+        }
+
+        .submit-btn,
+        .cancel-btn {
+            padding: 6px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .submit-btn {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .cancel-btn {
+            background-color: #f44336;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="topbar">
+            <div class="logo">
+                <h2>SAN ROQUE</h2>
+            </div>
+            <div class="search">
+                <form method="POST" action="">
+                    <input type="text" id="search" name="search" placeholder="SEARCH">
+                    <label for="search"><i class="fas fa-search"></i></label>
+                </form>
+            </div>
+            <i class="fas fa-bell"></i>
+            <div class="user">
+                <img src="../../images/adminPHOTO.png" alt="" id="userPhoto" onclick="toggleDropdown()">
+                <div id="dropdownMenu" class="dropdown-content">
+                    <a href="../../index.html">Logout</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar">
+            <ul>
+                <li>
+                    <a href="AdminDashboard.html">
+                        <i class="fas fa-th-large"></i>
+                        <div>Dashboard</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="oTable.html">
+                        <i class="fa fa-user"></i>
+                        <div>Officials</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="staff.html">
+                        <i class="fa fa-user"></i>
+                        <div>Staff</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="zoneLeader.html">
+                        <i class="fa fa-user"></i>
+                        <div>Zone Leader</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="household.html">
+                        <i class="fa fa-home"></i>
+                        <div>Household</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="resident.html">
+                        <i class="fa fa-user"></i>
+                        <div>Resident</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="permit.html">
+                        <i class="fa fa-file"></i>
+                        <div>Permit</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-user"></i>
+                        <div>Blotter</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="clearance.html">
+                        <i class="fa fa-file"></i>
+                        <div>Clearance</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="report.html">
+                        <i class="fa fa-file"></i>
+                        <div>Report</div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2>MANAGE BLOTTER</h2>
+                <form id="addStudentForm" enctype="multipart/form-data" method="POST">
+                    <!-- Complainant Section -->
+                    <div class="form-section">
+                        <h3>Complainant Details</h3>
+                        <div class="form-group">
+                            <label for="complainantName">Complainant Name:</label>
+                            <input type="text" id="complainantName" name="complainantName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="complainantAge">Complainant Age:</label>
+                            <input type="number" id="complainantAge" name="complainantAge" required>
+                        </div>
+                    </div>
+
+                    <!-- Complainee Section -->
+                    <div class="form-section">
+                        <h3>Complainee Details</h3>
+                        <div class="form-group">
+                            <label for="complaineeName">Complainee Name:</label>
+                            <input type="text" id="complaineeName" name="complaineeName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="complaineeAge">Complainee Age:</label>
+                            <input type="number" id="complaineeAge" name="complaineeAge" required>
+                        </div>
+                    </div>
+
+                    <!-- Complaint Details Section -->
+                    <div class="form-section">
+                        <h3>Complaint Details</h3>
+                        <div class="form-group">
+                            <label for="complaint">Nature of Complaint:</label>
+                            <textarea id="complaint" name="complaint" rows="3" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="incidentLocation">Location of Incident:</label>
+                            <input type="text" id="incidentLocation" name="incidentLocation" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="incidentDate">Date of Incident:</label>
+                            <input type="date" id="incidentDate" name="incidentDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="status">Status:</label>
+                            <select id="status" name="status" required>
+                                <option value="Pending">Pending</option>
+                                <option value="Ongoing">Ongoing</option>
+                                <option value="Resolved">Resolved</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="submit-btn">Submit Blotter</button>
+                        <button type="button" class="cancel-btn" onclick="closeModal()">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div id="editModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeEditModal()">&times;</span>
+                <h2>EDIT BLOTTER</h2>
+                <form id="editBlotterForm" enctype="multipart/form-data" method="POST">
+                    <!-- Complainant Section -->
+                    <div class="form-section">
+                        <h3>Complainant Details</h3>
+                        <div class="form-group">
+                            <label for="editComplainantName">Complainant Name:</label>
+                            <input type="text" id="editComplainantName" name="complainantName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editComplainantAge">Complainant Age:</label>
+                            <input type="number" id="editComplainantAge" name="complainantAge" required>
+                        </div>
+                    </div>
+
+                    <!-- Complainee Section -->
+                    <div class="form-section">
+                        <h3>Complainee Details</h3>
+                        <div class="form-group">
+                            <label for="editComplainee">Complainee Name:</label>
+                            <input type="text" id="editComplainee" name="complaineeName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editComplaineeAge">Complainee Age:</label>
+                            <input type="number" id="editComplaineeAge" name="complaineeAge" required>
+                        </div>
+                    </div>
+
+                    <!-- Complaint Details Section -->
+                    <div class="form-section">
+                        <h3>Complaint Details</h3>
+                        <div class="form-group">
+                            <label for="editComplaint">Nature of Complaint:</label>
+                            <textarea id="editComplaint" name="complaint" rows="3" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="editIncidentLocation">Location of Incident:</label>
+                            <input type="text" id="editIncidentLocation" name="incidentLocation" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editIncidentDate">Date of Incident:</label>
+                            <input type="date" id="editIncidentDate" name="incidentDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editStatus">Status:</label>
+                            <select id="editStatus" name="status" required>
+                                <option value="Pending">Pending</option>
+                                <option value="Ongoing">Ongoing</option>
+                                <option value="Resolved">Resolved</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="submit-btn">Update Blotter</button>
+                        <button type="button" class="cancel-btn" onclick="closeEditModal()">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="main">
+            <div class="table">
+                <div class="table_header">
+                    <h2>BLOTTER</h2>
+                    <div>
+                        <button class="add_new" onclick="document.getElementById('modal').style.display='block'">ADD NEW</button>
+                        <button class="delete-button" onclick="showDeleteConfirmation()">DELETE SELECTED</button>
+                    </div>
+                </div>
+
+                <div class="table_section">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox" id="selectAll" onclick="toggleAllCheckboxes()"></th>
+                                <th>Date Recorded</th>
+                                <th>Complainant</th>
+                                <th>Person to Complain</th>
+                                <th>Complaint #</th>
+                                <th>Status</th>
+                                <th>Location of Incidence</th>
+                                <th>Option</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="checkbox" class="rowCheckbox"></td>
+                                <td>01/01/2024</td>
+                                <td>John Doe</td>
+                                <td>Jane Smith</td>
+                                <td>001</td>
+                                <td>Pending</td>
+                                <td>123 Main St</td>
+                                <td>
+                                    <button onclick="openEditModal(this.closest('tr'))"><i class="fa-solid fa-pen-to-square"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="rowCheckbox"></td>
+                                <td>02/14/2024</td>
+                                <td>Alice Johnson</td>
+                                <td>Mark Lee</td>
+                                <td>002</td>
+                                <td>Solved</td>
+                                <td>456 Oak Ave</td>
+                                <td>
+                                    <button onclick="openEditModal(this.closest('tr'))"><i class="fa-solid fa-pen-to-square"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+
+                <div class="pagination">
+                    <div><i class="fa-solid fa-angles-left"></i></div>
+                    <div><i class="fa-solid fa-chevron-left"></i></div>
+                    <div>1</div>
+                    <div>2</div>
+                    <div><i class="fa-solid fa-chevron-right"></i></div>
+                    <div><i class="fa-solid fa-angles-right"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="deleteConfirmation" class="confirmation-dialog">
+        <div class="confirmation-content">
+            <p>Are you sure you want to delete selected data below?</p>
+            <button class="confirm-delete" onclick="deleteSelected()">Yes, Delete</button>
+            <button class="cancel-delete" onclick="closeDeleteConfirmation()">Cancel</button>
+        </div>
+    </div>
+
+    <script>
+        function toggleDropdown() {
+            document.getElementById("dropdownMenu").classList.toggle("show");
+        }
+        window.onclick = function(event) {
+            if (!event.target.matches('#userPhoto')) {
+                const dropdowns = document.getElementsByClassName("dropdown-content");
+                for (let i = 0; i < dropdowns.length; i++) {
+                    const openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+            if (event.target == document.getElementById("modal")) {
+                closeModal();
+            }
+            if (event.target == document.getElementById("deleteConfirmation")) {
+                closeDeleteConfirmation();
+            }
+            const editModal = document.getElementById('editModal');
+            if (event.target == editModal) {
+                closeEditModal();
+            }
+        }
+
+        function closeModal() {
+            document.getElementById("modal").style.display = "none";
+        }
+
+        function showDeleteConfirmation() {
+            document.getElementById('deleteConfirmation').style.display = 'block';
+        }
+
+        function closeDeleteConfirmation() {
+            document.getElementById('deleteConfirmation').style.display = 'none';
+        }
+
+        function deleteSelected() {
+            const checkboxes = document.getElementsByClassName('rowCheckbox');
+            for (let checkbox of checkboxes) {
+                if (checkbox.checked) {
+                    checkbox.closest('tr').remove();
+                }
+            }
+            closeDeleteConfirmation();
+        }
+
+        function toggleAllCheckboxes() {
+            const checkboxes = document.getElementsByClassName('rowCheckbox');
+            const selectAllCheckbox = document.getElementById('selectAll');
+            
+            for (let checkbox of checkboxes) {
+                checkbox.checked = selectAllCheckbox.checked;
+            }
+        }
+
+        function openEditModal(row) {
+            const editModal = document.getElementById('editModal');
+            
+            // Get data from the row
+            const cells = row.getElementsByTagName('td');
+            const dateRecorded = cells[1].textContent;
+            const complainant = cells[2].textContent;
+            const complainee = cells[3].textContent;
+            
+            // Populate the edit form with existing data
+            document.getElementById('editComplainantName').value = complainant;
+            document.getElementById('editComplainee').value = complainee;
+            document.getElementById('editIncidentDate').value = formatDateForInput(dateRecorded);
+            document.getElementById('editStatus').value = cells[5].textContent;
+            document.getElementById('editIncidentLocation').value = cells[6].textContent;
+            
+            // Show the modal
+            editModal.style.display = 'block';
+        }
+
+        function closeEditModal() {
+            document.getElementById('editModal').style.display = 'none';
+        }
+
+        function formatDateForInput(dateString) {
+            // Convert date from MM/DD/YYYY to YYYY-MM-DD for input field
+            const parts = dateString.split('/');
+            return `${parts[2]}-${parts[0].padStart(2, '0')}-${parts[1].padStart(2, '0')}`;
+        }
+
+        function exampleEdit() {
+            const row = event.target.closest('tr');
+            openEditModal(row);
+        }
+    </script>
+</body>
+
+</html>

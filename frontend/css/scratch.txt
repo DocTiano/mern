@@ -1,0 +1,55 @@
+//TABS
+.tab {
+            overflow: hidden;
+            background-color: #f1f1f1;
+        }
+
+        .tab button {
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+            color: white;
+        }
+
+        /* Default state (when inactive) */
+        .approved {
+            background-color: green;
+        }
+
+        .disapproved {
+            background-color: red;
+        }
+
+        /* Inactive state (visible but lightened) */
+        .tab button:not(.active) {
+            background-color: #d3d3d3; /* Light gray for inactive tabs */
+            color: black;
+        }
+
+        /* Hover effect */
+        .tab button:hover {
+            opacity: 0.8;
+        }
+
+        /* Active state - ensuring active tabs maintain their color */
+        .tab button.active.approved {
+            background-color: green;
+        }
+
+        .tab button.active.disapproved {
+            background-color: red;
+        }
+
+        /* Styling for the tab content */
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            border-top: none;
+        }
+
+        .tabcontent.active {
+            display: block;
+        }

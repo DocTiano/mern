@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STUDENT TABLE</title>
+    <link rel="stylesheet" href="../../css/oTable.css">
+    <link rel="stylesheet" href="../../css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="topbar">
+            <div class="logo">
+                <h2>SAN ROQUE</h2>
+            </div>
+            <div class="search">
+                <form method="POST" action="">
+                    <input type="text" id="search" name="search" placeholder="SEARCH">
+                    <label for="search"><i class="fas fa-search"></i></label>
+                </form>
+            </div>
+            <i class="fas fa-bell"></i>
+            <div class="user">
+                <img src="../../images/adminPHOTO.png" alt="" id="userPhoto" onclick="toggleDropdown()">
+                <div id="dropdownMenu" class="dropdown-content">
+                    <a href="../../index.html">Logout</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar">
+            <ul>
+                <li>
+                    <a href="AdminDashboard.html">
+                        <i class="fas fa-th-large"></i>
+                        <div>Dashboard</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-user"></i>
+                        <div>Officials</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="staff.html">
+                        <i class="fa fa-user"></i>
+                        <div>Staff</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="zoneLeader.html">
+                        <i class="fa fa-user"></i>
+                        <div>Zone Leader</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="household.html">
+                        <i class="fa fa-home"></i>
+                        <div>Household</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="resident.html">
+                        <i class="fa fa-user"></i>
+                        <div>Resident</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="permit.html">
+                        <i class="fa fa-file"></i>
+                        <div>Permit</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="blotter.html">
+                        <i class="fa fa-user"></i>
+                        <div>Blotter</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="clearance.html">
+                        <i class="fa fa-file"></i>
+                        <div>Clearance</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="report.html">
+                        <i class="fa fa-file"></i>
+                        <div>Report</div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2>MANAGE OFFICIALS</h2>
+                <form id="addOfficialForm" method="POST" enctype="multipart/form-data">
+                    <label for="officialPhoto">Official Photo:</label>
+                    <input type="file" id="officialPhoto" name="officialPhoto" accept="image/*" required />
+                    <br><br>
+                    <label>Position:</label>
+                    <select name="ddl_pos" class="form-control input-sm" required>
+                        <option selected="" disabled="">-- Select Positions --</option>
+                        <option value="Captain">Barangay Captain</option>
+                        <option value="Kagawad(Ordinance)">Barangay Kagawad(Ordinance)</option>
+                        <option value="Kagawad(Public Safety)">Barangay Kagawad(Public Safety)</option>
+                        <option value="Kagawad(Tourism)">Barangay Kagawad(Tourism)</option>
+                        <option value="Kagawad(Budget & Finance)">Barangay Kagawad(Budget & Finance)</option>
+                        <option value="Kagawad(Agriculture)">Barangay Kagawad(Agriculture)</option>
+                        <option value="Kagawad(Education)">Barangay Kagawad(Education)</option>
+                        <option value="Kagawad(Infrastructure)">Barangay Kagawad(Infrastructure)</option>
+                        <option value="SK Chairman">SK Chairman</option>
+                        <option value="Secretary">Barangay Secretary</option>
+                        <option value="Treasurer">Barangay Treasurer</option>
+                    </select>
+                    <br><br>
+                    <div class="form-group">
+                        <label>First Name:</label>
+                        <input name="txt_firstname" class="form-control input-sm" type="text" placeholder="First Name"
+                            required />
+                    </div>
+                    <div class="form-group">
+                        <label>Middle Name:</label>
+                        <input name="txt_middlename" class="form-control input-sm" type="text" placeholder="Middle Name"
+                            required />
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name:</label>
+                        <input name="txt_lastname" class="form-control input-sm" type="text" placeholder="Last Name"
+                            required />
+                    </div>
+                    <div class="form-group">
+                        <label>Contact #:</label>
+                        <input name="txt_contact" class="form-control input-sm" type="number" placeholder="Contact #"
+                            required />
+                    </div>
+                    <div class="form-group">
+                        <label>Address:</label>
+                        <input name="txt_address" class="form-control input-sm" type="text" placeholder="Address"
+                            required />
+                    </div>
+                    <div class="form-group">
+                        <label>Start Term:</label>
+                        <input id="txt_sterm" name="txt_sterm" class="form-control input-sm" type="date"
+                            placeholder="Start Term" required />
+                    </div>
+                    <div class="form-group">
+                        <label>End Term:</label>
+                        <input name="txt_eterm" class="form-control input-sm" type="date" placeholder="End Term"
+                            required />
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-sm" name="btn_add">Add Officials</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="main">
+            <div class="table">
+                <div class="table_header">
+                    <h2>BARANGAY OFFICIALS</h2>
+                    <div>
+                        <button class="add_new" onclick="document.getElementById('modal').style.display='block'">ADD
+                            OFFICIALS</button>
+                        <button class="delete-button" onclick="showDeleteConfirmation()">DELETE SELECTED</button>
+                    </div>
+                </div>
+
+                <div class="table_section">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox" id="selectAll" onclick="toggleAllCheckboxes()"></th>
+                                <th>Position</th>
+                                <th>Photo</th>
+                                <th>Name</th>
+                                <th>Contact #</th>
+                                <th>Address</th>
+                                <th>Start of Term</th>
+                                <th>End of Term</th>
+                                <th>Option</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="checkbox" class="rowCheckbox"></td>
+                                <td>1</td>
+                                <td><img src="./images/sample_student.png" alt=""></td>
+                                <td>JOHN DOE</td>
+                                <td>01/01/2000</td>
+                                <td>23</td>
+                                <td>123 MAIN ST</td>
+                                <td>A1</td>
+                                <td>
+                                    <button onclick="exampleEdit()"><i class="fa-solid fa-pen-to-square"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="pagination">
+                    <div><i class="fa-solid fa-angles-left"></i></div>
+                    <div><i class="fa-solid fa-chevron-left"></i></div>
+                    <div>1</div>
+                    <div>2</div>
+                    <div><i class="fa-solid fa-chevron-right"></i></div>
+                    <div><i class="fa-solid fa-angles-right"></i></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="editModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeEditModal()">&times;</span>
+                <h2>EDIT OFFICIAL INFORMATION</h2>
+                <form id="editOfficialForm" method="POST" enctype="multipart/form-data">
+                    <br>
+                    <label>Position:</label>
+                    <span id="editPosition" class="form-control input-sm"></span>
+                    <br><br>
+                    <div class="form-group">
+                        <label>First Name:</label>
+                        <input id="editFirstName" name="edit_firstname" class="form-control input-sm" type="text"
+                            placeholder="First Name" required />
+                    </div>
+                    <div class="form-group">
+                        <label>Middle Name:</label>
+                        <input id="editMiddleName" name="edit_middlename" class="form-control input-sm" type="text"
+                            placeholder="Middle Name" required />
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name:</label>
+                        <input id="editLastName" name="edit_lastname" class="form-control input-sm" type="text"
+                            placeholder="Last Name" required />
+                    </div>
+                    <div class="form-group">
+                        <label>Contact #:</label>
+                        <input id="editContact" name="edit_contact" class="form-control input-sm" type="number"
+                            placeholder="Contact #" required />
+                    </div>
+                    <div class="form-group">
+                        <label>Address:</label>
+                        <input id="editAddress" name="edit_address" class="form-control input-sm" type="text"
+                            placeholder="Address" required />
+                    </div>
+                    <div class="form-group">
+                        <label>Start Term:</label>
+                        <input id="editStartTerm" name="edit_sterm" class="form-control input-sm" type="date"
+                            required />
+                    </div>
+                    <div class="form-group">
+                        <label>End Term:</label>
+                        <input id="editEndTerm" name="edit_eterm" class="form-control input-sm" type="date" required />
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-sm" name="btn_edit">Update Officials</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="deleteConfirmation" class="confirmation-dialog">
+            <div class="confirmation-content">
+                <p>Are you sure you want to delete selected data below?</p>
+                <button class="confirm-delete" onclick="deleteSelected()">Yes, Delete</button>
+                <button class="cancel-delete" onclick="closeDeleteConfirmation()">Cancel</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function toggleDropdown() {
+            document.getElementById("dropdownMenu").classList.toggle("show");
+        }
+
+        function openEditModal(official) {
+            document.getElementById("editFirstName").value = official.firstName;
+            document.getElementById("editMiddleName").value = official.middleName;
+            document.getElementById("editLastName").value = official.lastName;
+            document.getElementById("editContact").value = official.contact;
+            document.getElementById("editAddress").value = official.address;
+            document.getElementById("editStartTerm").value = official.startTerm;
+            document.getElementById("editEndTerm").value = official.endTerm;
+
+            document.getElementById("editPosition").innerText = official.position;
+
+            document.getElementById("editModal").style.display = "block";
+        }
+
+        function closeEditModal() {
+            document.getElementById("editModal").style.display = "none";
+        }
+
+        function exampleEdit() {
+            const official = {
+                firstName: "John",
+                middleName: "M.",
+                lastName: "Doe",
+                contact: "0123456789",
+                address: "123 Main St",
+                startTerm: "2024-01-01",
+                endTerm: "2026-01-01",
+                position: "Barangay Captain"
+            };
+            openEditModal(official);
+        }
+
+        function deleteOfficial(button) {
+            if (confirm("Are you sure you want to delete this official?")) {
+                const row = button.closest('tr');
+                row.remove();
+                alert("Official deleted successfully!");
+            }
+        }
+
+        window.onclick = function (event) {
+            if (!event.target.matches('#userPhoto')) {
+                const dropdowns = document.getElementsByClassName("dropdown-content");
+                for (let i = 0; i < dropdowns.length; i++) {
+                    const openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+
+        $(document).ready(function () {
+            $('input[name="txt_sterm"]').change(function () {
+                var startterm = document.getElementById("txt_sterm").value;
+                console.log(startterm);
+                document.getElementsByName("txt_eterm")[0].setAttribute('min', startterm);
+            });
+        });
+
+        function closeModal() {
+            document.getElementById("modal").style.display = "none";
+        }
+
+        window.onclick = function (event) {
+            if (event.target == document.getElementById("modal")) {
+                closeModal();
+            }
+        }
+
+        function showDeleteConfirmation() {
+            document.getElementById('deleteConfirmation').style.display = 'block';
+        }
+
+        function closeDeleteConfirmation() {
+            document.getElementById('deleteConfirmation').style.display = 'none';
+        }
+
+        function deleteSelected() {
+            const checkboxes = document.getElementsByClassName('rowCheckbox');
+            for (let checkbox of checkboxes) {
+                if (checkbox.checked) {
+                    checkbox.closest('tr').remove();
+                }
+            }
+            closeDeleteConfirmation();
+        }
+
+        window.onclick = function(event) {
+            if (event.target == document.getElementById("deleteConfirmation")) {
+                closeDeleteConfirmation();
+            }
+        }
+
+        function toggleAllCheckboxes() {
+            const checkboxes = document.getElementsByClassName('rowCheckbox');
+            const selectAllCheckbox = document.getElementById('selectAll');
+            
+            for (let checkbox of checkboxes) {
+                checkbox.checked = selectAllCheckbox.checked;
+            }
+        }
+    </script>
+</body>
+
+</html>

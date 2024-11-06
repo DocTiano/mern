@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STUDENT TABLE</title>
+    <link rel="stylesheet" href="../../css/oTable.css">
+    <link rel="stylesheet" href="../../css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="topbar">
+            <div class="logo">
+                <h2>SAN ROQUE</h2>
+            </div>
+            <div class="search">
+                <form method="POST" action="">
+                    <input type="text" id="search" name="search" placeholder="SEARCH">
+                    <label for="search"><i class="fas fa-search"></i></label>
+                </form>
+            </div>
+            <i class="fas fa-bell"></i>
+            <div class="user">
+                <img src="../../images/adminPHOTO.png" alt="" id="userPhoto" onclick="toggleDropdown()">
+                <div id="dropdownMenu" class="dropdown-content">
+                    <a href="../../index.html">Logout</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar">
+            <ul>
+                <li>
+                    <a href="AdminDashboard.html">
+                        <i class="fas fa-th-large"></i>
+                        <div>Dashboard</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="oTable.html">
+                        <i class="fa fa-user"></i>
+                        <div>Officials</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="staff.html">
+                        <i class="fa fa-user"></i>
+                        <div>Staff</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="zoneLeader.html">
+                        <i class="fa fa-user"></i>
+                        <div>Zone Leader</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="household.html">
+                        <i class="fa fa-home"></i>
+                        <div>Household</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-user"></i>
+                        <div>Resident</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="permit.html">
+                        <i class="fa fa-file"></i>
+                        <div>Permit</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="blotter.html">
+                        <i class="fa fa-user"></i>
+                        <div>Blotter</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="clearance.html">
+                        <i class="fa fa-file"></i>
+                        <div>Clearance</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="report.html">
+                        <i class="fa fa-file"></i>
+                        <div>Report</div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div id="modal" class="modal fade">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <span class="close" onclick="closeModal()">&times;</span>
+                    <h2>MANAGE RESIDENT</h2>
+                    <form id="addResidentForm" enctype="multipart/form-data" method="POST">
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="container-fluid">
+                                    <div class="col-md-6 col-sm-12">
+
+                                        <label for="txt_lname">Last Name:</label>
+                                        <input type="text" id="txt_lname" name="txt_lname" class="form-control input-sm"
+                                            placeholder="Lastname" required />
+
+                                        <label for="txt_fname">First Name:</label>
+                                        <input type="text" id="txt_fname" name="txt_fname" class="form-control input-sm"
+                                            placeholder="Firstname" required />
+
+                                        <label for="txt_mname">Middle Name:</label>
+                                        <input type="text" id="txt_mname" name="txt_mname" class="form-control input-sm"
+                                            placeholder="Middlename" required />
+
+                                        <label for="txt_bdate">Birthdate:</label>
+                                        <input type="date" id="txt_bdate" name="txt_bdate" class="form-control input-sm"
+                                            required />
+
+                                        <label for="txt_brgy">Barangay:</label>
+                                        <input type="text" id="txt_brgy" name="txt_brgy" class="form-control input-sm"
+                                            placeholder="Barangay" required />
+
+                                        <label for="txt_householdnum">Household #:</label>
+                                        <input type="number" id="txt_householdnum" name="txt_householdnum"
+                                            class="form-control input-sm" min="1" placeholder="Household #" required />
+
+                                        <label for="txt_dperson">Differently-abled Person:</label>
+                                        <input type="text" id="txt_dperson" name="txt_dperson"
+                                            class="form-control input-sm" placeholder="Differently-abled Person" />
+
+                                        <label for="txt_btype">Blood Type:</label>
+                                        <input type="text" id="txt_btype" name="txt_btype" class="form-control input-sm"
+                                            placeholder="Blood Type" />
+
+                                        <label for="txt_cstatus">Civil Status:</label>
+                                        <input type="text" id="txt_cstatus" name="txt_cstatus"
+                                            class="form-control input-sm" placeholder="Civil Status" />
+
+                                        <label for="txt_length">Length of Stay (in Months):</label>
+                                        <input type="number" id="txt_length" name="txt_length"
+                                            class="form-control input-sm" min="0" placeholder="Length of Stay" />
+
+                                        <label for="txt_religion">Religion:</label>
+                                        <input type="text" id="txt_religion" name="txt_religion"
+                                            class="form-control input-sm" placeholder="Religion" />
+
+                                        <label for="ddl_eattain">Educational Attainment:</label>
+                                        <select id="ddl_eattain" name="ddl_eattain" class="form-control input-sm">
+                                            <option>No schooling completed</option>
+                                            <option>Elementary</option>
+                                            <option>High school, undergrad</option>
+                                            <option>High school graduate</option>
+                                            <option>College, undergrad</option>
+                                            <option>Vocational</option>
+                                            <option>Bachelor’s degree</option>
+                                            <option>Master’s degree</option>
+                                            <option>Doctorate degree</option>
+                                        </select>
+                                        <label for="ddl_los">Land Ownership Status:</label>
+                                        <select id="ddl_los" name="ddl_los" class="form-control input-sm">
+                                            <option>Owned</option>
+                                            <option>Landless</option>
+                                            <option>Tenant</option>
+                                            <option>Care Taker</option>
+                                        </select>
+                                        <label for="txt_water">Water Usage:</label>
+                                        <select id="txt_water" name="txt_water" class="form-control input-sm">
+                                            <option>Faucet</option>
+                                            <option>Deep Well</option>
+                                        </select>
+
+                                        <label for="txt_uname">Username:</label>
+                                        <input type="text" id="txt_uname" name="txt_uname" class="form-control input-sm"
+                                            placeholder="Username" required />
+                                        <label id="user_msg" style="color:#CC0000;"></label>
+
+                                    </div>
+
+                                    <div class="col-md-6 col-sm-12">
+                                        <label for="ddl_gender">Gender:</label>
+                                        <select id="ddl_gender" name="ddl_gender" class="form-control input-sm"
+                                            required>
+                                            <option selected="" disabled="">-Select Gender-</option>
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
+                                        </select>
+                                        <label for="txt_bplace">Birthplace:</label>
+                                        <input type="text" id="txt_bplace" name="txt_bplace"
+                                            class="form-control input-sm" placeholder="Birthplace" required />
+
+                                        <label for="txt_mstatus">Marital Status:</label>
+                                        <input type="text" id="txt_mstatus" name="txt_mstatus"
+                                            class="form-control input-sm" placeholder="Marital Status" />
+
+                                        <label for="txt_zone">Zone #:</label>
+                                        <input type="text" id="txt_zone" name="txt_zone" class="form-control input-sm"
+                                            placeholder="Zone #" />
+
+                                        <label for="txt_householdmem">Total Household Member:</label>
+                                        <input type="number" id="txt_householdmem" name="txt_householdmem"
+                                            class="form-control input-sm" min="1" placeholder="Total Household Member"
+                                            required />
+
+                                        <label for="txt_rthead">Relationship to Head:</label>
+                                        <input type="text" id="txt_rthead" name="txt_rthead"
+                                            class="form-control input-sm" placeholder="Relationship to Head" />
+
+                                        <label for="txt_occp">Occupation:</label>
+                                        <input type="text" id="txt_occp" name="txt_occp" class="form-control input-sm"
+                                            placeholder="Occupation" />
+
+                                        <label for="txt_income">Monthly Income:</label>
+                                        <input type="number" id="txt_income" name="txt_income"
+                                            class="form-control input-sm" min="1" placeholder="Monthly Income"
+                                            required />
+
+                                        <label for="txt_national">Nationality:</label>
+                                        <input type="text" id="txt_national" name="txt_national"
+                                            class="form-control input-sm" placeholder="Nationality" />
+
+                                        <label for="txt_skills">Skills:</label>
+                                        <input type="text" id="txt_skills" name="txt_skills"
+                                            class="form-control input-sm" placeholder="Skills" />
+
+                                        <label for="txt_phno">PhilHealth #:</label>
+                                        <input type="number" id="txt_phno" name="txt_phno" class="form-control input-sm"
+                                            max="999999999999" min="1" placeholder="eg. 010000000001" />
+
+                                        <label for="ddl_hos">House Ownership Status:</label>
+                                        <select id="ddl_hos" name="ddl_hos" class="form-control input-sm">
+                                            <option value="Own Home">Own Home</option>
+                                            <option value="Rent">Rent</option>
+                                            <option value="Live with Parents/Relatives">Live with Parents/Relatives
+                                            </option>
+                                        </select>
+                                        <label for="txt_lightning">Lightning Facilities:</label>
+                                        <select id="txt_lightning" name="txt_lightning" class="form-control input-sm">
+                                            <option>Electric</option>
+                                            <option>Lamp</option>
+                                        </select>
+                                        <label for="txt_faddress">Former Address:</label>
+                                        <input type="text" id="txt_faddress" name="txt_faddress"
+                                            class="form-control input-sm" placeholder="Former Address" />
+
+                                        <label for="txt_upass">Password:</label>
+                                        <input type="password" id="txt_upass" name="txt_upass"
+                                            class="form-control input-sm" placeholder="Password" required />
+
+                                        <label for="txt_image">Image:</label>
+                                        <input type="file" id="txt_image" name="txt_image" class="form-control input-sm"
+                                            required />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit">Add Resident</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="main">
+            <div class="table">
+                <div class="table_header">
+                    <h2>Residents</h2>
+                    <div>
+                        <button class="add_new" onclick="document.getElementById('modal').style.display='block'">ADD
+                            NEW</button>
+                        <button class="delete-button" onclick="showDeleteConfirmation()">DELETE SELECTED</button>
+                    </div>
+                </div>
+
+                <div class="table_section">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox" id="selectAll" onclick="toggleAllCheckboxes()"></th>
+                                <th>Zone</th>
+                                <th>Photo</th>
+                                <th>Name</th>
+                                <th>Age</th>
+                                <th>Gender</th>
+                                <th>Former Address</th>
+                                <th>Option</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="checkbox" class="rowCheckbox"></td>
+                                <td>1</td>
+                                <td><img src="./images/sample_student.png" alt=""></td>
+                                <td>JOHN DOE</td>
+                                <td>21</td>
+                                <td>Male</td>
+                                <td>123 MAIN ST</td>
+                                <td>
+                                    <button onclick="exampleEdit()"><i class="fa-solid fa-pen-to-square"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="pagination">
+                    <div><i class="fa-solid fa-angles-left"></i></div>
+                    <div><i class="fa-solid fa-chevron-left"></i></div>
+                    <div>1</div>
+                    <div>2</div>
+                    <div><i class="fa-solid fa-chevron-right"></i></div>
+                    <div><i class="fa-solid fa-angles-right"></i></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="editModal" class="modal fade">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <span class="close" onclick="closeEditModal()">&times;</span>
+                    <h2>EDIT RESIDENT INFORMATION</h2>
+                    <form id="editResidentForm" method="POST" enctype="multipart/form-data">
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="container-fluid">
+                                    <div class="col-md-6 col-sm-12">
+                                        <label for="edit_txt_lname">Last Name:</label>
+                                        <input type="text" id="edit_txt_lname" name="edit_txt_lname"
+                                            class="form-control input-sm" placeholder="Lastname" required />
+
+                                        <label for="edit_txt_fname">First Name:</label>
+                                        <input type="text" id="edit_txt_fname" name="edit_txt_fname"
+                                            class="form-control input-sm" placeholder="Firstname" required />
+
+                                        <label for="edit_txt_mname">Middle Name:</label>
+                                        <input type="text" id="edit_txt_mname" name="edit_txt_mname"
+                                            class="form-control input-sm" placeholder="Middlename" required />
+
+                                        <label for="edit_txt_bdate">Birthdate:</label>
+                                        <input type="date" id="edit_txt_bdate" name="edit_txt_bdate"
+                                            class="form-control input-sm" required />
+
+                                        <label for="edit_txt_brgy">Barangay:</label>
+                                        <input type="text" id="edit_txt_brgy" name="edit_txt_brgy"
+                                            class="form-control input-sm" placeholder="Barangay" required />
+
+                                        <label for="edit_txt_householdnum">Household #:</label>
+                                        <input type="number" id="edit_txt_householdnum" name="edit_txt_householdnum"
+                                            class="form-control input-sm" min="1" placeholder="Household #" required />
+
+                                        <label for="edit_txt_dperson">Differently-abled Person:</label>
+                                        <input type="text" id="edit_txt_dperson" name="edit_txt_dperson"
+                                            class="form-control input-sm" placeholder="Differently-abled Person" />
+
+                                        <label for="edit_txt_btype">Blood Type:</label>
+                                        <input type="text" id="edit_txt_btype" name="edit_txt_btype"
+                                            class="form-control input-sm" placeholder="Blood Type" />
+
+                                        <label for="edit_txt_cstatus">Civil Status:</label>
+                                        <input type="text" id="edit_txt_cstatus" name="edit_txt_cstatus"
+                                            class="form-control input-sm" placeholder="Civil Status" />
+
+                                        <label for="edit_txt_length">Length of Stay (in Months):</label>
+                                        <input type="number" id="edit_txt_length" name="edit_txt_length"
+                                            class="form-control input-sm" min="0" placeholder="Length of Stay" />
+
+                                        <label for="edit_txt_religion">Religion:</label>
+                                        <input type="text" id="edit_txt_religion" name="edit_txt_religion"
+                                            class="form-control input-sm" placeholder="Religion" />
+
+                                        <label for="edit_ddl_eattain">Educational Attainment:</label>
+                                        <select id="edit_ddl_eattain" name="edit_ddl_eattain"
+                                            class="form-control input-sm">
+                                            <option>No schooling completed</option>
+                                            <option>Elementary</option>
+                                            <option>High school, undergrad</option>
+                                            <option>High school graduate</option>
+                                            <option>College, undergrad</option>
+                                            <option>Vocational</option>
+                                            <option>Bachelor’s degree</option>
+                                            <option>Master’s degree</option>
+                                            <option>Doctorate degree</option>
+                                        </select>
+
+                                        <label for="edit_ddl_los">Land Ownership Status:</label>
+                                        <select id="edit_ddl_los" name="edit_ddl_los" class="form-control input-sm">
+                                            <option>Owned</option>
+                                            <option>Landless</option>
+                                            <option>Tenant</option>
+                                            <option>Care Taker</option>
+                                        </select>
+
+                                        <label for="edit_txt_water">Water Usage:</label>
+                                        <select id="edit_txt_water" name="edit_txt_water" class="form-control input-sm">
+                                            <option>Faucet</option>
+                                            <option>Deep Well</option>
+                                        </select>
+
+                                        <label for="edit_txt_uname">Username:</label>
+                                        <input type="text" id="edit_txt_uname" name="edit_txt_uname"
+                                            class="form-control input-sm" placeholder="Username" required />
+                                        <label id="user_msg" style="color:#CC0000;"></label>
+                                    </div>
+
+                                    <div class="col-md-6 col-sm-12">
+                                        <label for="edit_ddl_gender">Gender:</label>
+                                        <select id="edit_ddl_gender" name="edit_ddl_gender"
+                                            class="form-control input-sm" required>
+                                            <option selected="" disabled="">-Select Gender-</option>
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
+                                        </select>
+
+                                        <label for="edit_txt_bplace">Birthplace:</label>
+                                        <input type="text" id="edit_txt_bplace" name="edit_txt_bplace"
+                                            class="form-control input-sm" placeholder="Birthplace" required />
+
+                                        <label for="edit_txt_mstatus">Marital Status:</label>
+                                        <input type="text" id="edit_txt_mstatus" name="edit_txt_mstatus"
+                                            class="form-control input-sm" placeholder="Marital Status" />
+
+                                        <label for="edit_txt_zone">Zone #:</label>
+                                        <input type="text" id="edit_txt_zone" name="edit_txt_zone"
+                                            class="form-control input-sm" placeholder="Zone #" />
+
+                                        <label for="edit_txt_householdmem">Total Household Member:</label>
+                                        <input type="number" id="edit_txt_householdmem" name="edit_txt_householdmem"
+                                            class="form-control input-sm" min="1" placeholder="Total Household Member"
+                                            required />
+
+                                        <label for="edit_txt_rthead">Relationship to Head:</label>
+                                        <input type="text" id="edit_txt_rthead" name="edit_txt_rthead"
+                                            class="form-control input-sm" placeholder="Relationship to Head" />
+
+                                        <label for="edit_txt_occp">Occupation:</label>
+                                        <input type="text" id="edit_txt_occp" name="edit_txt_occp"
+                                            class="form-control input-sm" placeholder="Occupation" />
+
+                                        <label for="edit_txt_income">Monthly Income:</label>
+                                        <input type="number" id="edit_txt_income" name="edit_txt_income"
+                                            class="form-control input-sm" min="1" placeholder="Monthly Income"
+                                            required />
+
+                                        <label for="edit_txt_national">Nationality:</label>
+                                        <input type="text" id="edit_txt_national" name="edit_txt_national"
+                                            class="form-control input-sm" placeholder="Nationality" />
+
+                                        <label for="edit_txt_skills">Skills:</label>
+                                        <input type="text" id="edit_txt_skills" name="edit_txt_skills"
+                                            class="form-control input-sm" placeholder="Skills" />
+
+                                        <label for="edit_txt_phno">PhilHealth #:</label>
+                                        <input type="number" id="edit_txt_phno" name="edit_txt_phno"
+                                            class="form-control input-sm" max="999999999999" min="1"
+                                            placeholder="eg. 010000000001" />
+
+                                        <label for="edit_ddl_hos">House Ownership Status:</label>
+                                        <select id="edit_ddl_hos" name="edit_ddl_hos" class="form-control input-sm">
+                                            <option value="Own Home">Own Home</option>
+                                            <option value="Rent">Rent</option>
+                                            <option value="Live with Parents/Relatives">Live with Parents/Relatives
+                                            </option>
+                                        </select>
+
+                                        <label for="edit_txt_lightning">Lightning Facilities:</label>
+                                        <select id="edit_txt_lightning" name="edit_txt_lightning"
+                                            class="form-control input-sm">
+                                            <option>Electric</option>
+                                            <option>Lamp</option>
+                                        </select>
+
+                                        <label for="edit_txt_faddress">Former Address:</label>
+                                        <input type="text" id="edit_txt_faddress" name="edit_txt_faddress"
+                                            class="form-control input-sm" placeholder="Former Address" />
+
+                                        <label for="edit_txt_upass">Password:</label>
+                                        <input type="password" id="edit_txt_upass" name="edit_txt_upass"
+                                            class="form-control input-sm" placeholder="Password" required />
+
+                                        <label for="edit_txt_image">Image:</label>
+                                        <input type="file" id="edit_txt_image" name="edit_txt_image"
+                                            class="form-control input-sm" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary btn-sm" name="btn_edit">Update
+                                Household</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div id="deleteConfirmation" class="confirmation-dialog">
+            <div class="confirmation-content">
+                <p>Are you sure you want to delete selected data below?</p>
+                <button class="confirm-delete" onclick="deleteSelected()">Yes, Delete</button>
+                <button class="cancel-delete" onclick="closeDeleteConfirmation()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleDropdown() {
+            document.getElementById("dropdownMenu").classList.toggle("show");
+        }
+
+        window.onclick = function (event) {
+            if (!event.target.matches('#userPhoto')) {
+                const dropdowns = document.getElementsByClassName("dropdown-content");
+                for (let i = 0; i < dropdowns.length; i++) {
+                    const openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+            if (event.target == document.getElementById("modal")) {
+                closeModal();
+            }
+            if (event.target == document.getElementById("deleteConfirmation")) {
+                closeDeleteConfirmation();
+            }
+        }
+
+        function openEditModal(residentData) {
+            // Update the IDs to match the new modal's fields
+            document.getElementById('edit_txt_lname').value = residentData.lastName;
+            document.getElementById('edit_txt_fname').value = residentData.firstName;
+            document.getElementById('edit_txt_mname').value = residentData.middleName;
+            document.getElementById('edit_txt_bdate').value = residentData.birthDate;
+            document.getElementById('edit_txt_brgy').value = residentData.barangay;
+            document.getElementById('edit_txt_householdnum').value = residentData.householdNum;
+            document.getElementById('edit_txt_dperson').value = residentData.differentlyAbled;
+            document.getElementById('edit_txt_btype').value = residentData.bloodType;
+            document.getElementById('edit_txt_cstatus').value = residentData.civilStatus;
+            document.getElementById('edit_txt_length').value = residentData.lengthOfStay;
+            document.getElementById('edit_txt_religion').value = residentData.religion;
+            document.getElementById('edit_ddl_eattain').value = residentData.educationalAttainment;
+            document.getElementById('edit_ddl_los').value = residentData.landOwnershipStatus;
+            document.getElementById('edit_txt_water').value = residentData.waterUsage;
+            document.getElementById('edit_txt_uname').value = residentData.username;
+            document.getElementById('edit_ddl_gender').value = residentData.gender;
+            document.getElementById('edit_txt_bplace').value = residentData.birthplace;
+            document.getElementById('edit_txt_mstatus').value = residentData.maritalStatus;
+            document.getElementById('edit_txt_zone').value = residentData.zone;
+            document.getElementById('edit_txt_householdmem').value = residentData.totalHouseholdMembers;
+            document.getElementById('edit_txt_rthead').value = residentData.relationshipToHead;
+            document.getElementById('edit_txt_occp').value = residentData.occupation;
+            document.getElementById('edit_txt_income').value = residentData.monthlyIncome;
+            document.getElementById('edit_txt_national').value = residentData.nationality;
+            document.getElementById('edit_txt_skills').value = residentData.skills;
+            document.getElementById('edit_txt_phno').value = residentData.philHealthNo;
+            document.getElementById('edit_ddl_hos').value = residentData.houseOwnershipStatus;
+            document.getElementById('edit_txt_lightning').value = residentData.lightningFacilities;
+            document.getElementById('edit_txt_faddress').value = residentData.formerAddress;
+            document.getElementById('edit_txt_upass').value = residentData.password;
+
+            document.getElementById("editModal").style.display = "block";
+        }
+
+        function closeEditModal() {
+            document.getElementById("editModal").style.display = "none";
+        }
+
+        function exampleEdit() {
+            const residentData = {
+                lastName: "Doe",
+                firstName: "John",
+                middleName: "A",
+                birthDate: "1990-01-01",
+                barangay: "San Roque",
+                householdNum: 1,
+                differentlyAbled: "",
+                bloodType: "O+",
+                civilStatus: "Single",
+                lengthOfStay: 12,
+                religion: "Christian",
+                educationalAttainment: "Bachelor’s degree",
+                landOwnershipStatus: "Owned",
+                waterUsage: "Faucet",
+                username: "johndoe",
+                gender: "Male",
+                birthplace: "San Roque",
+                maritalStatus: "Single",
+                zone: "1",
+                totalHouseholdMembers: 3,
+                relationshipToHead: "Self",
+                occupation: "Engineer",
+                monthlyIncome: 50000,
+                nationality: "Filipino",
+                skills: "Programming",
+                philHealthNo: 123456789012,
+                houseOwnershipStatus: "Own Home",
+                lightningFacilities: "Electric",
+                formerAddress: "123 Old St",
+                password: "password123"
+            };
+            openEditModal(residentData);
+        }
+
+        function closeModal() {
+            document.getElementById("modal").style.display = "none";
+        }
+
+        function showDeleteConfirmation() {
+            document.getElementById('deleteConfirmation').style.display = 'block';
+        }
+
+        function closeDeleteConfirmation() {
+            document.getElementById('deleteConfirmation').style.display = 'none';
+        }
+
+        function deleteSelected() {
+            const checkboxes = document.getElementsByClassName('rowCheckbox');
+            for (let checkbox of checkboxes) {
+                if (checkbox.checked) {
+                    checkbox.closest('tr').remove();
+                }
+            }
+            closeDeleteConfirmation();
+        }
+
+        function toggleAllCheckboxes() {
+            const checkboxes = document.getElementsByClassName('rowCheckbox');
+            const selectAllCheckbox = document.getElementById('selectAll');
+
+            for (let checkbox of checkboxes) {
+                checkbox.checked = selectAllCheckbox.checked;
+            }
+        }
+    </script>
+
+</body>
+
+</html>

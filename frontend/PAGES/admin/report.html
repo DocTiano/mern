@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../css/dashboard.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" />
+    <title>BMIS</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="topbar">
+            <div class="logo">
+                <h2>SAN ROQUE</h2>
+            </div>
+            <div class="search">
+                <input type="text" id="search" placeholder="SEARCH">
+                <label for="search"><i class="fas fa-search"></i></label>
+            </div>
+            <i class="fas fa-bell"></i>
+            <div class="user">
+                <img src="../../images/adminPHOTO.png" alt="" id="userPhoto" onclick="toggleDropdown()">
+                <div id="dropdownMenu" class="dropdown-content">
+                    <a href="../../index.html">Logout</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar">
+            <ul>
+                <li>
+                    <a href="AdminDashboard.html">
+                        <i class="fas fa-th-large"></i>
+                        <div>Dashboard</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="oTable.html">
+                        <i class="fa fa-user"></i>
+                        <div>Officials</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="staff.html">
+                        <i class="fa fa-user"></i>
+                        <div>Staff</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="zoneLeader.html">
+                        <i class="fa fa-user"></i>
+                        <div>Zone Leader</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="household.html">
+                        <i class="fa fa-home"></i>
+                        <div>Household</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="resident.html">
+                        <i class="fa fa-user"></i>
+                        <div>Resident</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="permit.html">
+                        <i class="fa fa-file"></i>
+                        <div>Permit</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="blotter.html">
+                        <i class="fa fa-user"></i>
+                        <div>Blotter</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="clearance.html">
+                        <i class="fa fa-file"></i>
+                        <div>Clearance</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="report.html">
+                        <i class="fa fa-file"></i>
+                        <div>Report</div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="main">
+            <div class="charts">
+
+                <div class="chart">
+                    <h2>Resident Income Level</h2>
+                    <canvas id="ageChart"></canvas>
+                </div>
+
+                <div class="chart" id="radar-chart">
+                    <h2>Radar Chart</h2>
+                    <canvas id="radarChart"></canvas>
+                </div>
+
+                <div class="chart">
+                    <h2>Polar Area Chart</h2>
+                    <canvas id="polarChart"></canvas>
+                </div>
+
+                
+
+                <div class="chart" id="doughnut-chart">
+                    <h2>Resident Educational Attainment</h2>
+                    <canvas id="doughnut"></canvas>
+                </div>
+
+                
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+    <script>
+
+        // Polar Area Chart - Barangay Population per Zone
+        const polarCtx = document.getElementById('polarChart');
+        new Chart(polarCtx, {
+            type: 'polarArea',
+            data: {
+                labels: ['Zone 1', 'Zone 2', 'Zone 3', 'Zone 4', 'Zone 5', 'Zone 6', 'Zone 7'],
+                datasets: [{
+                    label: 'Population per Zone',
+                    data: [150, 120, 180, 200, 130, 160, 110], // Example population data for each zone
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.8)',
+                        'rgba(54, 162, 235, 0.8)',
+                        'rgba(255, 206, 86, 0.8)',
+                        'rgba(75, 192, 192, 0.8)',
+                        'rgba(153, 102, 255, 0.8)',
+                        'rgba(255, 159, 64, 0.8)',
+                        'rgba(41, 155, 99, 0.8)'
+                    ],
+                    borderColor: 'rgba(255, 255, 255, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true
+            }
+        });
+
+
+
+        // Line Chart
+        const ageCtx = document.getElementById('ageChart').getContext('2d');
+        const ageChart = new Chart(ageCtx, {
+            type: 'line',
+            data: {
+                labels: [16, 17, 18],
+                datasets: [{
+                    label: 'Number of Students by Age',
+                    data: [10, 20, 30],
+                    backgroundColor: 'rgba(85, 85, 85, 1)',
+                    borderColor: 'rgb(41, 155, 99)',
+                    borderWidth: 1,
+                    fill: false
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Doughnut Chart
+        const doughnutCtx = document.getElementById('doughnut').getContext('2d');
+        const myChart2 = new Chart(doughnutCtx, {
+            type: 'doughnut',
+            data: {
+                labels: [
+                    'No schooling completed', 'Elementary', 'High school, undergrad',
+                    'High school graduate', 'College, undergrad', 'Vocational',
+                    'Bachelor’s degree', 'Master’s degree', 'Doctorate degree'
+                ],
+                datasets: [{
+                    label: 'Student Distribution by Section',
+                    data: [4, 1, 1, 1, 1, 1, 1, 1, 6],
+                    backgroundColor: [
+                        'rgba(41, 155, 99, 0.8)', 'rgba(54, 162, 235, 0.8)',
+                        'rgba(255, 206, 86, 0.8)', 'rgba(75, 192, 192, 0.8)',
+                        'rgba(153, 102, 255, 0.8)', 'rgba(255, 159, 64, 0.8)',
+                        'rgba(255, 99, 132, 0.8)', 'rgba(201, 203, 207, 0.8)',
+                        'rgba(123, 237, 159, 0.8)'
+                    ],
+                    borderColor: 'rgba(255, 255, 255, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true
+            }
+        });
+
+        // Radar Chart - Age Distribution in Barangay San Roque
+        const radarCtx = document.getElementById('radarChart').getContext('2d');
+        const myRadarChart = new Chart(radarCtx, {
+            type: 'radar',
+            data: {
+                labels: ['0-10', '11-20', '21-30', '31-40', '41-50', '51-60', '61-70', '71-80', '81+'],
+                datasets: [{
+                    label: 'Number of Residents by Age Group',
+                    data: [50, 70, 90, 60, 55, 40, 30, 20, 10], // Example age group distribution
+                    backgroundColor: 'rgba(85, 85, 85, 0.5)',
+                    borderColor: 'rgb(41, 155, 99)',
+                    borderWidth: 3,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    r: {
+                        angleLines: {
+                            display: true
+                        },
+                        suggestedMin: 0,
+                        suggestedMax: 100
+                    }
+                }
+            }
+        });
+
+
+        function toggleDropdown() {
+            document.getElementById("dropdownMenu").classList.toggle("show");
+        }
+
+        window.onclick = function (event) {
+            if (!event.target.matches('#userPhoto')) {
+                const dropdowns = document.getElementsByClassName("dropdown-content");
+                for (let i = 0; i < dropdowns.length; i++) {
+                    const openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
